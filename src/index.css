@@ -1,0 +1,107 @@
+@import 'tailwindcss';
+@plugin 'lightswind/plugin';
+/* ===============================
+   Theme Configuration (Tailwind v4)
+================================ */
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+}
+
+/* ===============================
+   Base Variables
+================================ */
+
+@layer base {
+  :root {
+    --background: 40 20% 94%;
+    --foreground: 0 0% 10%;
+
+    --primary: 0 78% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 20% 94%;
+
+    --muted: 40 10% 88%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 40 15% 90%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 10% 80%;
+    --input: 40 10% 80%;
+    --ring: 0 78% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 40 20% 94%;
+
+    --primary: 0 78% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 20% 94%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 40 10% 65%;
+
+    --accent: 0 0% 18%;
+    --accent-foreground: 40 20% 94%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 20% 94%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 78% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 0, 0, 0.4);
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.animate-shine {
+  animation: shine 3s ease-in-out infinite;
+}
