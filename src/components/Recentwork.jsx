@@ -10,7 +10,7 @@ const PROJECTS = [
     title: "DJ - Night Promo",
     category: "Post Promotional Edit",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1771436971/Herovideo_wwwdaf.mp4",
+      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1774726581/Herovideo_1_fylein.mp4",
   },
   {
     id: 2,

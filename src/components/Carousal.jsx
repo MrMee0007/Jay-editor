@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 /* ------------------ DATA ------------------ */
 
 const images = [
-  { src: "https://res.cloudinary.com/ds0y1ut9q/image/upload/v1774478238/IMG_1303_scvq64.webp" },
+  { src: "https://res.cloudinary.com/ds0y1ut9q/image/upload/v1774562789/Photo9_juyekj.webp" },
   { src: "https://res.cloudinary.com/ds0y1ut9q/image/upload/v1774478218/IMG_1231_uxkiki.webp" },
   { src: "https://res.cloudinary.com/ds0y1ut9q/image/upload/v1774560979/Img19_xlvbjy.webp" },
   { src: "https://res.cloudinary.com/ds0y1ut9q/image/upload/v1774560979/Photo1_vdcrpp.webp" },

@@ -8,19 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 /* ================= DATA ================= */
 const workData = [
   {
-    role: "Official Media Crew Member",
-    organization: "Galgotias University",
-    year: "2024",
-    description:
-      "Covered Navjot Ahuja Concerts Performance.",
-    clips: [
-      { src: "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1774477718/IMG_1242_m1rgo8.mp4" },
-    ],
-  },
-  {
     role: "Concert Videographer",
     organization: "GLA University",
-    year: "2023",
+    year: "2025",
     description:
       "Covered Ankit Tiwari And Panther Concerts Performance.",
     clips: [
@@ -28,9 +18,19 @@ const workData = [
     ],
   },
   {
+    role: "Official Media Crew Member",
+    organization: "Galgotias University",
+    year: "2026",
+    description:
+      "Covered Navjot Ahuja Concerts Performance.",
+    clips: [
+      { src: "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1774477718/IMG_1242_m1rgo8.mp4" },
+    ],
+  },
+  {
     role: "Freelance Video Editor",
     organization: "Independent Projects",
-    year: "2022 – Present",
+    year: "Present",
     description: "Professional editing services for artists and brands.",
     clips: [
       { src: "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1774557759/IMG_2009_1_bzvgqy.mp4" },
