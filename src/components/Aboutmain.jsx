@@ -266,7 +266,12 @@ const HeroSection = () => {
       );
 
       /* ------------------ STEP 3: FINAL LINE POSITION ------------------ */
-      const spread = window.innerWidth < 768 ? 75 : 120;
+      const spread =
+  window.innerWidth < 480
+    ? 45
+    : window.innerWidth < 768
+    ? 65
+    : 120;
 
       tl.to(
         cards,
@@ -374,3 +379,4 @@ const HeroSection = () => {
 };
 
 export default memo(HeroSection);
+
