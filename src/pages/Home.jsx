@@ -6,13 +6,11 @@ import SeasonSection from '../components/SeasonSection'
 import RecentWork from '../components/Recentwork'
 import Work2 from '../components/Work2'
 import PortfolioCarousel from '../components/Carousal'
-import BennetHero from '../components/BennetHero'
 
 
 const Home = () => {
   return (
     <div className="overflow-x-hidden">
-      <BennetHero />
       <Aboutmain />
       <ProjectsSection />
       <PortfolioCarousel />
