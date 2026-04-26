@@ -2,14 +2,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const clients = [
-  "Netflix",
-  "Sony Pictures",
-  "Vogue",
-  "Nike",
-  "Apple",
-  "Mercedes-Benz",
-  "Dior",
-  "Red Bull",
+  "Nikon",
+  "Sony",
+  "Canon",
+  "Brand 9 Studio",
+  "Hita",
+  "Grata",
 ];
 
 const experienceData = [

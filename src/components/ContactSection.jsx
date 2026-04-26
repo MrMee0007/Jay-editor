@@ -84,7 +84,7 @@ const ContactSection = () => {
                   <Mail size={18} className="text-red-400 group-hover:text-white" />
                 </div>
                 <span className="text-white/80 group-hover:text-orange-400 transition">
-                  youremail@gmail.com
+                  jaysharma1882005@gmail.com
                 </span>
               </motion.a>
 
@@ -99,7 +99,7 @@ const ContactSection = () => {
                                 flex items-center justify-center">
                   <Phone size={18} className="text-white" />
                 </div>
-                <span className="text-white/60">+91 XXXXX XXXXX</span>
+                <span className="text-white/60">+91 85329 17086</span>
               </motion.div>
 
               {/* LOCATION */}
