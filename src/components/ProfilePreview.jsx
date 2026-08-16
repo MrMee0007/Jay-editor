@@ -154,8 +154,10 @@ const PortfolioPreview = () => {
           modules={[Autoplay, Navigation]}
           loop={true}
           speed={750}
+          initialSlide={0}
           autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          onSlideChange={(s) => setActiveIndex(s.realIndex)}
+          onSwiper={(s) => setActiveIndex(s.realIndex)}
+          onSlideChangeTransitionEnd={(s) => setActiveIndex(s.realIndex)}
           centeredSlides={true}
           grabCursor={true}
           breakpoints={{
