@@ -1,133 +1,103 @@
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Pause } from "lucide-react";
+import { ArrowRight, ArrowLeft, Volume2, VolumeX, Play, Pause } from "lucide-react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 /* =========================
    DATA
 ========================= */
 const featuredProjects = [
-  {
-    id: 1,
-    title: "Grata Burger",
-    category: "Commercial",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876779/grata_burger_1_1.mp4",
-  },
-  {
-    id: 2,
-    title: "HitA — Short Clip",
-    category: "Advertisement",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876749/HITAAAA_1.mp4",
-  },
-  {
-    id: 3,
-    title: "Grata Sandwich",
-    category: "Commercial",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876790/grata_Sandwchh_1.mp4",
-  },
-  {
-    id: 4,
-    title: "Advertisement ",
-    category: "Commercial",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876771/Sequence_01_1.mp4",
-  },
-  {
-    id: 5,
-    title: "Golden Hour",
-    category: "Editorial",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876757/HITA_26_01_1.mp4",
-  },
-  {
-    id: 6,
-    title: "TV Promo",
-    category: "Advertisement",
-    video:
-      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876791/AlrightTV_Promo_2.mp4",
-  },
+  { id: 1, title: "Grata Burger",      category: "Commercial",    year: "2024", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876779/grata_burger_1_1.mp4" },
+  { id: 2, title: "HitA — Short Clip", category: "Advertisement", year: "2024", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876749/HITAAAA_1.mp4" },
+  { id: 3, title: "Grata Sandwich",    category: "Commercial",    year: "2024", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876790/grata_Sandwchh_1.mp4" },
+  { id: 4, title: "Advertisement",     category: "Commercial",    year: "2023", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876771/Sequence_01_1.mp4" },
+  { id: 5, title: "Golden Hour",       category: "Editorial",     year: "2023", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876757/HITA_26_01_1.mp4" },
+  { id: 6, title: "TV Promo",          category: "Advertisement", year: "2023", video: "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876791/AlrightTV_Promo_2.mp4" },
 ];
 
 /* =========================
-   VIDEO CARD COMPONENT
+   REEL CARD
 ========================= */
-const VideoCard = ({ project, index, isInView }) => {
+const ReelCard = ({ project, isActive }) => {
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(true);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (isActive) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  }, [isActive]);
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  };
 
   const togglePlay = (e) => {
-    e.preventDefault(); // stop navigation
-
-    if (!videoRef.current) return;
-
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPlaying(true); }
+    else          { v.pause(); setPlaying(false); }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.4 + index * 0.15 }}
-      className="group cursor-pointer"
-    >
-      <Link to="/works">
-        <div className="relative overflow-hidden aspect-[3/4] mb-4 rounded-lg">
-          
-          {/* 🎬 VIDEO */}
-          <video
-            ref={videoRef}
-            src={project.video}
-            controls
-            muted
-            loop
-            playsInline
-            autoPlay
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+    <div className={`reel-card ${isActive ? "reel-card--active" : ""}`}>
+      {/* Video */}
+      <video
+        ref={videoRef}
+        src={project.video}
+        muted
+        loop
+        playsInline
+        className="reel-video"
+      />
 
-          {/* 🎮 PLAY/PAUSE BUTTON
-          <button
-            onClick={togglePlay}
-            className="absolute inset-0 flex items-center justify-center 
-                       opacity-0 group-hover:opacity-100 transition duration-300"
-          >
-            <div className="bg-black/60 p-4 rounded-full backdrop-blur-md border border-white/20">
-              {isPlaying ? (
-                <Pause className="text-white w-6 h-6" />
-              ) : (
-                <Play className="text-white w-6 h-6" />
-              )}
-            </div>
-          </button> */}
+      {/* Gradient overlay */}
+      <div className="reel-gradient" />
 
-          {/* 🔥 Overlays */}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-          {/* 🧠 TEXT */}
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <span className="text-red-400 text-xs uppercase tracking-widest block mb-1">
-              {project.category}
-            </span>
-            <h3 className="font-display text-xl text-white uppercase">
-              {project.title}
-            </h3>
-          </div>
-
-          {/* ✨ BORDER */}
-          <div className="absolute inset-0 border border-white/10 group-hover:border-red-500/40 transition duration-500" />
+      {/* Top controls */}
+      <div className="reel-top-bar">
+        <span className="reel-category">{project.category}</span>
+        <div className="reel-top-actions">
+          <button onClick={togglePlay} className="reel-icon-btn" aria-label="play/pause">
+            {playing ? <Pause size={14} /> : <Play size={14} />}
+          </button>
+          <button onClick={toggleMute} className="reel-icon-btn" aria-label="mute/unmute">
+            {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+          </button>
         </div>
-      </Link>
-    </motion.div>
+      </div>
+
+      {/* Bottom info */}
+      <div className="reel-bottom">
+        <p className="reel-year">{project.year}</p>
+        <h3 className="reel-title">{project.title}</h3>
+        <Link to="/works" className="reel-cta" onClick={(e) => e.stopPropagation()}>
+          Watch <ArrowRight size={12} />
+        </Link>
+      </div>
+
+      {/* Active border glow */}
+      {isActive && <div className="reel-active-border" />}
+    </div>
   );
 };
 
@@ -135,135 +105,115 @@ const VideoCard = ({ project, index, isInView }) => {
    MAIN COMPONENT
 ========================= */
 const PortfolioPreview = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const sectionRef = useRef(null);
+  const swiperRef  = useRef(null);
+  const isInView   = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const prev = useCallback(() => swiperRef.current?.swiper.slidePrev(), []);
+  const next = useCallback(() => swiperRef.current?.swiper.slideNext(), []);
 
   return (
-    <section
-      id="portfolio"
-      ref={ref}
-      className="relative bg-[#0a0a0a] py-24 md:py-32 lg:py-40 px-6 md:px-12 lg:px-20 overflow-hidden"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-red-900/10 pointer-events-none" />
+    <section id="portfolio" ref={sectionRef} className="reel-section">
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      {/* Ambient glow */}
+      <div className="reel-ambient" />
 
-        {/* HEADER */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="flex items-start gap-4"
-          >
-            <span className="text-vertical font-display text-6xl lg:text-8xl text-white/10 hidden md:block">
-              01
-            </span>
+      {/* ─── HEADER ─── */}
+      <motion.div
+        className="reel-header"
+        initial={{ opacity: 0, y: 36 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <div className="reel-header-left">
+          <span className="reel-section-label">Selected Works</span>
+          <h2 className="reel-section-heading">
+            <span className="reel-heading-stroke">SELEC</span>TED<br />WORKS
+          </h2>
+        </div>
+        <div className="reel-header-right">
+          <p className="reel-section-sub">
+            Cinematic reels across commercial, editorial &amp; advertising.
+          </p>
+          <Link to="/works" className="reel-view-all">
+            View All <ArrowRight size={14} />
+          </Link>
+        </div>
+      </motion.div>
 
-            <div>
-              <h2 className="editorial-heading-large text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">
-                SELEC
-              </h2>
-              <h2 className="editorial-heading-large text-white -mt-2 md:-mt-4">
-                TED
-              </h2>
-              <h2 className="editorial-heading-large text-white -mt-2 md:-mt-4">
-                WORKS
-              </h2>
-            </div>
-          </motion.div>
+      {/* ─── REEL SLIDER ─── */}
+      <motion.div
+        className="reel-slider-outer"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <Swiper
+          ref={swiperRef}
+          modules={[Autoplay, Navigation]}
+          loop={true}
+          speed={750}
+          autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          onSlideChange={(s) => setActiveIndex(s.realIndex)}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            0:    { slidesPerView: 1.18, spaceBetween: 14 },
+            480:  { slidesPerView: 1.45, spaceBetween: 18 },
+            640:  { slidesPerView: 2.1,  spaceBetween: 20 },
+            900:  { slidesPerView: 2.6,  spaceBetween: 22 },
+            1200: { slidesPerView: 3.2,  spaceBetween: 24 },
+            1440: { slidesPerView: 3.8,  spaceBetween: 26 },
+          }}
+          className="reel-swiper"
+        >
+          {featuredProjects.map((project, i) => (
+            <SwiperSlide key={project.id} className="reel-swiper-slide">
+              <ReelCard project={project} isActive={activeIndex === i} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-right"
-          >
-            <p className="text-white/60 max-w-md mb-6">
-              A glimpse into recent cinematic works across film, commercial,
-              and editorial projects.
-            </p>
+        {/* ─── NAV ARROWS ─── */}
+        <button onClick={prev} className="reel-nav reel-nav--prev" aria-label="previous">
+          <ArrowLeft size={20} />
+        </button>
+        <button onClick={next} className="reel-nav reel-nav--next" aria-label="next">
+          <ArrowRight size={20} />
+        </button>
+      </motion.div>
 
-            <Link
-              to="/works"
-              className="inline-flex items-center gap-2 text-red-400 hover:text-red-500 
-                         hover:gap-4 transition-all duration-300 uppercase tracking-widest text-sm"
-            >
-              View All Works
-              <ArrowRight size={16} />
-            </Link>
-          </motion.div>
+      {/* ─── COUNTER + DOTS ─── */}
+      <motion.div
+        className="reel-footer-bar"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 0.7 }}
+      >
+        <span className="reel-counter">
+          <strong>{String(activeIndex + 1).padStart(2, "0")}</strong>
+          <span>/</span>
+          <span>{String(featuredProjects.length).padStart(2, "0")}</span>
+        </span>
+
+        <div className="reel-dots">
+          {featuredProjects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { swiperRef.current?.swiper.slideToLoop(i); setActiveIndex(i); }}
+              className={`reel-dot ${i === activeIndex ? "reel-dot--active" : ""}`}
+              aria-label={`slide ${i + 1}`}
+            />
+          ))}
         </div>
 
-{/* VIDEO GRID / MOBILE SLIDER */}
-<div className="relative">
-  
-  {/* Desktop */}
-  <div className="hidden md:grid grid-cols-3 gap-6">
-    {featuredProjects.map((project, index) => (
-      <VideoCard
-        key={project.id}
-        project={project}
-        index={index}
-        isInView={isInView}
-      />
-    ))}
-  </div>
+        <Link to="/works" className="reel-explore-btn">
+          <span>Explore All</span>
+          <ArrowRight size={14} />
+        </Link>
+      </motion.div>
 
-{/* Mobile Slider */}
-<div
-  className="
-    md:hidden
-    flex
-    gap-5
-    overflow-x-auto
-    snap-x
-    snap-mandatory
-    scroll-smooth
-    pb-6
-    -mx-6
-    px-6
-    scrollbar-hide
-  "
->
-  {featuredProjects.map((project, index) => (
-    <div
-      key={project.id}
-      className="flex-shrink-0 w-[85vw] snap-center"
-    >
-      <VideoCard
-        project={project}
-        index={index}
-        isInView={isInView}
-      />
-    </div>
-  ))}
-</div>
-
-</div>
-
-        
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <Link
-            to="/works"
-            className="btn-editorial bg-red-600 hover:bg-transparent 
-                       border border-red-600 text-white 
-                       hover:text-red-500 transition-all duration-300"
-          >
-            <span>Explore Full Portfolio</span>
-          </Link>
-        </motion.div>
-
-      </div>
     </section>
   );
 };

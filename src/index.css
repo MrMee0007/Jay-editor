@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 
 
 @import 'tailwindcss';
@@ -204,3 +204,496 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ======================================================
+   PORTFOLIO PREVIEW — REEL SLIDER
+====================================================== */
+
+/* ─── SECTION ─── */
+.reel-section {
+  position: relative;
+  background: #080808;
+  padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.reel-ambient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 15% 60%, rgba(239,68,68,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 30%, rgba(249,115,22,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ─── HEADER ─── */
+.reel-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.reel-header-left { flex: 1 1 260px; }
+.reel-header-right { flex: 0 1 360px; text-align: right; }
+
+.reel-section-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ef4444;
+  border-left: 2px solid #ef4444;
+  padding-left: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.reel-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7.5vw, 6.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.reel-heading-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #ef4444;
+}
+
+.reel-section-sub {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  max-width: 320px;
+  margin-left: auto;
+  margin-bottom: 1.1rem;
+}
+
+.reel-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: gap 0.3s, color 0.3s;
+}
+.reel-view-all:hover { gap: 1rem; color: #f97316; }
+
+/* ─── SLIDER OUTER ─── */
+.reel-slider-outer {
+  position: relative;
+  width: 100%;
+  /* Let swiper overflow to edges for peek effect */
+}
+
+/* ─── SWIPER ─── */
+.reel-swiper {
+  width: 100%;
+  padding-block: 1.5rem 2rem !important;
+}
+
+/* ─── SLIDE ─── */
+.reel-swiper-slide {
+  /* height driven by aspect ratio inside */
+  height: auto;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+              opacity  0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* Inactive slides: shrink + dim */
+.reel-swiper-slide:not(.swiper-slide-active) {
+  transform: scale(0.91);
+  opacity: 0.55;
+  filter: brightness(0.6);
+}
+
+/* ─── REEL CARD ─── */
+.reel-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  cursor: grab;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transition: box-shadow 0.4s;
+}
+
+.reel-card--active {
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(239,68,68,0.12);
+}
+
+/* ─── VIDEO ─── */
+.reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 7s ease;
+}
+.swiper-slide-active .reel-video {
+  transform: scale(1);
+}
+
+/* ─── GRADIENT ─── */
+.reel-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.45) 0%,
+      transparent 30%,
+      transparent 55%,
+      rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+
+/* ─── TOP BAR ─── */
+.reel-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0.9rem 0.5rem;
+  z-index: 10;
+}
+
+.reel-category {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+
+.reel-top-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.reel-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.reel-icon-btn:hover {
+  background: rgba(239,68,68,0.35);
+  border-color: rgba(239,68,68,0.5);
+  color: #fff;
+}
+
+/* ─── BOTTOM INFO ─── */
+.reel-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1rem 1.1rem;
+  z-index: 10;
+}
+
+.reel-year {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.25rem;
+}
+
+.reel-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+}
+
+.reel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ef4444;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: gap 0.25s, border-color 0.25s;
+}
+.reel-cta:hover { gap: 0.8rem; border-color: #ef4444; }
+
+/* ─── ACTIVE BORDER RING ─── */
+.reel-active-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(239,68,68,0.55);
+  border-radius: 14px;
+  pointer-events: none;
+  animation: reelPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes reelPulse {
+  0%, 100% { border-color: rgba(239,68,68,0.55); box-shadow: inset 0 0 0 0 rgba(239,68,68,0); }
+  50%       { border-color: rgba(249,115,22,0.6);  box-shadow: inset 0 0 12px rgba(239,68,68,0.07); }
+}
+
+/* ─── NAV ARROWS ─── */
+.reel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10,10,10,0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s;
+}
+.reel-nav:hover {
+  background: rgba(239,68,68,0.25);
+  border-color: rgba(239,68,68,0.5);
+  color: #fff;
+}
+
+.reel-nav--prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+.reel-nav--next { right: clamp(0.5rem, 2vw, 1.5rem); }
+
+.reel-nav--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.reel-nav--next:hover { transform: translateY(-50%) translateX(2px); }
+
+/* ─── FOOTER BAR ─── */
+.reel-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+  margin-top: 0.5rem;
+}
+
+/* Counter */
+.reel-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.05em;
+}
+.reel-counter strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: #ef4444;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* Dots */
+.reel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.reel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, width 0.35s, border-radius 0.35s;
+  padding: 0;
+}
+.reel-dot--active {
+  width: 24px;
+  border-radius: 999px;
+  background: #ef4444;
+}
+
+/* Explore button */
+.reel-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.reel-explore-btn:hover {
+  color: #fff;
+  border-color: rgba(239,68,68,0.5);
+  background: rgba(239,68,68,0.1);
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 640px) {
+  .reel-header { text-align: center; justify-content: center; }
+  .reel-header-right { text-align: center; }
+  .reel-section-sub { margin-inline: auto; }
+  .reel-view-all { justify-content: center; }
+
+  .reel-nav { width: 36px; height: 36px; }
+  .reel-nav svg { width: 16px; height: 16px; }
+
+  .reel-footer-bar { justify-content: center; }
+  .reel-explore-btn { display: none; }
+}
+
+@media (max-width: 400px) {
+  .reel-section-heading { font-size: clamp(2rem, 10vw, 3rem); }
+  .reel-title { font-size: 0.95rem; }
+}
+
+/* ======================================================
+   GLOBAL POLISH
+====================================================== */
+
+/* ─── Smooth page-level selections ─── */
+::selection {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fff;
+}
+
+/* ─── Section hairline separators ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.07) 30%, rgba(239,68,68,0.15) 50%, rgba(255,255,255,0.07) 70%, transparent);
+}
+
+/* ─── Glowing focus outline on form inputs ─── */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 1px 0 rgba(249, 115, 22, 0.6);
+}
+
+/* ─── Smooth text rendering ─── */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Footer marquee ─── */
+.footer-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 20s linear infinite;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Scroll-linked opacity utility ─── */
+.fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* ─── Noise texture utility (for depth on dark cards) ─── */
+.noise-layer {
+  position: relative;
+}
+.noise-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Hover shimmer on buttons ─── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmerMove 0.6s ease forwards;
+}
+@keyframes shimmerMove {
+  to { left: 160%; }
+}
+
+/* ─── About section skill tags ─── */
+.skill-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.3rem 0.75rem;
+  color: rgba(255,255,255,0.35);
+  cursor: default;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.skill-tag:hover {
+  border-color: rgba(239,68,68,0.4);
+  color: rgba(255,255,255,0.7);
+  background: rgba(239,68,68,0.05);
+}
+
+
