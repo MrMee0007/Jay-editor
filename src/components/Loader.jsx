@@ -4,26 +4,33 @@ import { useEffect, useState } from "react";
 const Loader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    let current = 0;
+useEffect(() => {
+  let current = 0;
 
-    const interval = setInterval(() => {
-      current += Math.floor(Math.random() * 8) + 2;
+  const interval = setInterval(() => {
+    if (current < 70) {
+      current += Math.floor(Math.random() * 5) + 2;
+    } else if (current < 90) {
+      current += 2;
+    } else if (current < 100) {
+      current += 1;
+    }
 
-      if (current >= 100) {
-        current = 100;
-        clearInterval(interval);
+    if (current >= 100) {
+      current = 100;
+      clearInterval(interval);
 
-        setTimeout(() => {
-          onComplete();
-        }, 500);
-      }
+      // Small pause before revealing the website
+      setTimeout(() => {
+        onComplete();
+      }, 700);
+    }
 
-      setProgress(current);
-    }, 100);
+    setProgress(Math.floor(current));
+  }, 100);
 
-    return () => clearInterval(interval);
-  }, [onComplete]);
+  return () => clearInterval(interval);
+}, [onComplete]);
 
   return (
     <motion.div
