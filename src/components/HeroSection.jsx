@@ -22,7 +22,7 @@ const HeroSection = () => {
     className="w-full h-full object-cover"
   >
     <source
-      src="https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777139820/lv_0_20260425195346_himtv1.mp4"
+      src="https://res.cloudinary.com/gpypzfsh/video/upload/v1786912930/lv_0_20260425195346_1.mp4"
       type="video/mp4"
     />
   </video>

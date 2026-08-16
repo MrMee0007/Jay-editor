@@ -12,11 +12,18 @@ const clients = [
 
 const experienceData = [
   {
-    year: "Sept 2023 — Aug 2024",
-    title: "Junior Editor",
+    year: "Feb 2026 — Present",
+    title: "Senior Video Editor",
+    company: "Lemon Media Company · Full-time",
+    description:
+      "Working as a Senior Video Editor, creating high-impact video content, shaping visual storytelling, and delivering engaging edits for digital and commercial projects.",
+  },
+  {
+    year: "Sept 2025 — Mar 2026",
+    title: "General Secretary",
     company: "Creative Team",
     description:
-      "Started the journey by assisting in edits, learning pacing, storytelling, and building a strong foundation in visual narrative.",
+      "Handled leadership responsibilities, coordinated teams, managed events, and drove creative direction at an organizational level.",
   },
   {
     year: "Sept 2024 — Aug 2025",
@@ -26,11 +33,11 @@ const experienceData = [
       "Led the editing team, managed projects, defined visual style, and ensured high-quality output across all productions.",
   },
   {
-    year: "Sept 2025 — Mar 2026",
-    title: "General Secretary",
+    year: "Sept 2023 — Aug 2024",
+    title: "Junior Editor",
     company: "Creative Team",
     description:
-      "Handled leadership responsibilities, coordinated teams, managed events, and drove creative direction at an organizational level.",
+      "Started the journey by assisting in edits, learning pacing, storytelling, and building a strong foundation in visual narrative.",
   },
 ];
 
@@ -91,18 +98,18 @@ const ExperienceSection = () => {
                     {item.year}
                   </span>
 
-                  {/* Title + Latest Badge */}
-                  <div className="flex items-center mt-2">
-                    <h3 className="font-display text-xl md:text-2xl text-white uppercase group-hover:text-red-400 transition-colors duration-300">
-                      {item.title}
-                    </h3>
+{/* Title + Latest Badge */}
+<div className="flex items-center mt-2">
+  <h3 className="font-display text-xl md:text-2xl text-white uppercase group-hover:text-red-400 transition-colors duration-300">
+    {item.title}
+  </h3>
 
-                    {index === experienceData.length - 1 && (
-                      <span className="ml-3 text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded">
-                        Latest
-                      </span>
-                    )}
-                  </div>
+  {index === 0 && (
+    <span className="ml-3 text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded">
+      Latest
+    </span>
+  )}
+</div>
 
                   {/* Company */}
                   <p className="text-white/60 mt-1">

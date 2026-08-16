@@ -4,10 +4,13 @@ import {
   Mail,
   MapPin,
   Phone,
-  Instagram,
-  Linkedin,
-  Youtube,
 } from "lucide-react";
+
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -71,7 +74,7 @@ const ContactSection = () => {
 
               {/* EMAIL */}
               <motion.a
-                href="mailto:youremail@gmail.com"
+                href="mailto:jaysharma1882005@gmail.com"
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -119,26 +122,106 @@ const ContactSection = () => {
               </motion.div>
             </div>
 
-            {/* SOCIAL */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex gap-4 mt-12 ml-9"
-            >
-              {[Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-12 h-12 border border-white/20 flex items-center justify-center
-                             bg-white hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-400
-                             hover:border-transparent hover:text-white
-                             transition-all duration-300"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </motion.div>
+{/* SOCIAL */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.6, delay: 0.6 }}
+  className="flex gap-4 mt-12 ml-9"
+>
+  {/* =========================
+      INSTAGRAM
+  ========================= */}
+  <a
+    href="https://www.instagram.com/jayshrma._/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="
+      group
+      w-12 h-12
+      border border-white/20
+      flex items-center justify-center
+      bg-white
+      hover:bg-gradient-to-r
+      hover:from-red-500
+      hover:to-orange-400
+      hover:border-transparent
+      transition-all duration-300
+    "
+  >
+    <FaInstagram
+      size={21}
+      className="
+        text-[#E4405F]
+        group-hover:text-white
+        transition-colors duration-300
+      "
+    />
+  </a>
+
+  {/* =========================
+      WHATSAPP
+  ========================= */}
+  <a
+    href="https://wa.me/8532917086"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+    className="
+      group
+      w-12 h-12
+      border border-white/20
+      flex items-center justify-center
+      bg-white
+      hover:bg-gradient-to-r
+      hover:from-red-500
+      hover:to-orange-400
+      hover:border-transparent
+      transition-all duration-300
+    "
+  >
+    <FaWhatsapp
+      size={21}
+      className="
+        text-[#25D366]
+        group-hover:text-white
+        transition-colors duration-300
+      "
+    />
+  </a>
+
+  {/* =========================
+      LINKEDIN
+  ========================= */}
+  <a
+    href="https://www.linkedin.com/in/jay-sharma-200382289/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+    className="
+      group
+      w-12 h-12
+      border border-white/20
+      flex items-center justify-center
+      bg-white
+      hover:bg-gradient-to-r
+      hover:from-red-500
+      hover:to-orange-400
+      hover:border-transparent
+      transition-all duration-300
+    "
+  >
+    <FaLinkedinIn
+      size={21}
+      className="
+        text-[#0A66C2]
+        group-hover:text-white
+        transition-colors duration-300
+      "
+    />
+  </a>
+</motion.div>
           </div>
 
           {/* RIGHT FORM */}

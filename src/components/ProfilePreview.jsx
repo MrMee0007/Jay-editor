@@ -12,42 +12,42 @@ const featuredProjects = [
     title: "Grata Burger",
     category: "Commercial",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120021/grata_burger_1_hu5gfp.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876779/grata_burger_1_1.mp4",
   },
   {
     id: 2,
     title: "HitA — Short Clip",
     category: "Advertisement",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120050/HITAAAA_yqgkf5.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876749/HITAAAA_1.mp4",
   },
   {
     id: 3,
     title: "Grata Sandwich",
     category: "Commercial",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120021/grata_Sandwchh_vim2ol.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876790/grata_Sandwchh_1.mp4",
   },
   {
     id: 4,
     title: "Advertisement ",
     category: "Commercial",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120048/Sequence_01_spe5ks.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876771/Sequence_01_1.mp4",
   },
   {
     id: 5,
     title: "Golden Hour",
     category: "Editorial",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120044/I2GLO_CHANGE_wfezhk.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876757/HITA_26_01_1.mp4",
   },
   {
     id: 6,
     title: "TV Promo",
     category: "Advertisement",
     video:
-      "https://res.cloudinary.com/ds0y1ut9q/video/upload/v1777120046/HITA_26_01_diterc.mp4",
+      "https://res.cloudinary.com/gpypzfsh/video/upload/v1786876791/AlrightTV_Promo_2.mp4",
   },
 ];
 
@@ -197,17 +197,54 @@ const PortfolioPreview = () => {
           </motion.div>
         </div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredProjects.map((project, index) => (
-            <VideoCard
-              key={project.id}
-              project={project}
-              index={index}
-              isInView={isInView}
-            />
-          ))}
-        </div>
+{/* VIDEO GRID / MOBILE SLIDER */}
+<div className="relative">
+  
+  {/* Desktop */}
+  <div className="hidden md:grid grid-cols-3 gap-6">
+    {featuredProjects.map((project, index) => (
+      <VideoCard
+        key={project.id}
+        project={project}
+        index={index}
+        isInView={isInView}
+      />
+    ))}
+  </div>
+
+{/* Mobile Slider */}
+<div
+  className="
+    md:hidden
+    flex
+    gap-5
+    overflow-x-auto
+    snap-x
+    snap-mandatory
+    scroll-smooth
+    pb-6
+    -mx-6
+    px-6
+    scrollbar-hide
+  "
+>
+  {featuredProjects.map((project, index) => (
+    <div
+      key={project.id}
+      className="flex-shrink-0 w-[85vw] snap-center"
+    >
+      <VideoCard
+        project={project}
+        index={index}
+        isInView={isInView}
+      />
+    </div>
+  ))}
+</div>
+
+</div>
+
+        
 
         {/* CTA */}
         <motion.div

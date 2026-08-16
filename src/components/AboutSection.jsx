@@ -74,7 +74,7 @@ const AboutSection = () => {
 
                 {/* Image */}
                 <img
-                  src="https://res.cloudinary.com/ds0y1ut9q/image/upload/v1776956917/WhatsApp_Image_2026-04-23_at_8.31.53_PM_mnedc5.webp"
+                  src="https://res.cloudinary.com/gpypzfsh/image/upload/v1786913036/WhatsApp_Image_2026-04-23_at_8.31.53_PM.jpg"
                   alt="Video Editor Portrait"
                   className="w-full h-full object-cover grayscale 
                              group-hover:grayscale-0 group-hover:scale-105 
@@ -122,9 +122,9 @@ const AboutSection = () => {
             {/* 🔹 Stats */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
               {[
-                { value: "4+", label: "Years" },
-                { value: "236+", label: "Cuts" },
-                { value: "15+", label: "Clients" },
+                { value: "3+", label: "Years" },
+                { value: "136+", label: "Cuts" },
+                { value: "8+", label: "Clients" },
               ].map((item, i) => (
                 <div key={i} className="group">
                   <span

@@ -5,50 +5,58 @@ import { Film, Video, Camera, Wand2 } from "lucide-react";
 const services = [
   {
     icon: Video,
-    title: "High-Impact Social Videos",
-    description: "Scroll-stopping edits designed for maximum engagement and reach.",
+    title: "Raw Footage to Engaging Content",
+    description:
+      "Transforming raw footage into engaging, scroll-stopping content built to hold attention.",
     number: "01",
   },
   {
-    icon: Film,
-    title: "Storytelling & Narrative Editing",
-    description: "Crafting emotional, cinematic stories that connect deeply with audiences.",
+    icon: Wand2,
+    title: "AI Videos from Scratch",
+    description:
+      "Creating unique AI-powered videos from scratch, turning ideas into compelling visual content.",
     number: "02",
   },
   {
-    icon: Wand2,
-    title: "Motion Graphics & VFX",
-    description: "Dynamic visuals, transitions, and effects that elevate your content.",
+    icon: Film,
+    title: "Hook-Driven Content",
+    description:
+      "Creating powerful hooks that capture attention within the first few seconds and stop the scroll.",
     number: "03",
   },
   {
-    icon: Camera,
-    title: "Food & Beverage Visuals",
-    description: "Appetizing, high-end visuals designed to trigger craving and attention.",
+    icon: Video,
+    title: "Engagement-Focused Editing",
+    description:
+      "Editing strategies designed to increase watch time, retention, shares, and audience engagement.",
     number: "04",
   },
   {
     icon: Camera,
-    title: "Jewelry & Luxury Branding",
-    description: "Elegant, premium visuals that reflect exclusivity and craftsmanship.",
+    title: "Food & Beverage Content",
+    description:
+      "High-quality food visuals and edits designed to create craving, attention, and conversions.",
     number: "05",
   },
   {
-    icon: Video,
-    title: "Hook Videos & Ad Creatives",
-    description: "Strong first 3 seconds that capture attention and drive conversions.",
+    icon: Camera,
+    title: "Jewelry & Luxury Content",
+    description:
+      "Premium visual content that highlights craftsmanship, elegance, and the identity of luxury brands.",
     number: "06",
   },
   {
-    icon: Film,
-    title: "Fast-Paced Editing Techniques",
-    description: "High-energy cuts, transitions, and rhythm-driven storytelling.",
+    icon: Wand2,
+    title: "Ad Creatives That Convert",
+    description:
+      "Performance-focused video creatives designed to capture attention and turn viewers into customers.",
     number: "07",
   },
   {
-    icon: Wand2,
+    icon: Film,
     title: "Creative Storytelling",
-    description: "Blending visuals, sound, and narrative into impactful experiences.",
+    description:
+      "Blending visuals, sound, pacing, and narrative to create memorable content that connects with audiences.",
     number: "08",
   },
 ];
