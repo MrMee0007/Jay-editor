@@ -11,16 +11,16 @@ const clients = [
 ];
 
 const experienceData = [
-  {
-    year: "Feb 2026 — Present",
-    title: "Senior Video Editor",
-    company: "Lemon Media Company · Full-time",
-    description:
-      "Working as a Senior Video Editor, creating high-impact video content, shaping visual storytelling, and delivering engaging edits for digital and commercial projects.",
-  },
+{
+  year: "2023 — Present",
+  title: "Freelance Video Editor",
+  company: "Self-Employed · Freelance",
+  description:
+    "Working as a Freelance Video Editor for the past 3 years, creating high-impact video content, shaping visual storytelling, and delivering engaging edits for digital, social media, and commercial projects.",
+},
   {
     year: "Sept 2025 — Mar 2026",
-    title: "General Secretary",
+    title: "Junior Video Editor",
     company: "Creative Team",
     description:
       "Handled leadership responsibilities, coordinated teams, managed events, and drove creative direction at an organizational level.",
